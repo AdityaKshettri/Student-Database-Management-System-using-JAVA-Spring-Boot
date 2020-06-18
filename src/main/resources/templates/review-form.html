@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Review</title>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Review Form</h3>
+		<hr>
+		
+		<a th:href="@{/courses}" 
+			class="btn btn-primary btn-sm mb-3">
+			Back to Course List
+		</a>
+		
+		<p class="h4 mb-4">Save Review</p>
+		
+		<form 
+			action="#" 
+			th:action="@{'/reviews/save?id='+${id}}" 
+			th:object="${theReview}" 
+			method="POST">
+			
+			<input 
+				type="text" 
+				th:field="*{rating}" 
+				class="form-control mb-4 col-4" 
+				placeholder="Rating" />
+				
+			<input 
+				type="text" 
+				th:field="*{description}" 
+				class="form-control mb-4 col-4" 
+				placeholder="Description" />
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+			
+		</form>
+	</div>
+</body>
+
+</html>

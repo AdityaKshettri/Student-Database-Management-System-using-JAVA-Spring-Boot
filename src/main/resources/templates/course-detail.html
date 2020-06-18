@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course Details</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Course Details</h3>
+	<hr>
+	
+	<a th:href="@{/courses}" 
+		class="btn btn-primary btn-sm mb-3">
+		Back to Course List
+	</a>
+	
+	<a th:href="@{'/reviews/add?id='+${course.id}}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Review
+	</a>
+	
+	<p class="h4 mb-4" th:text="'Course : ' + ${course.name}" />
+		
+	<h4 class="h4 mb-4">Course Reviews</h4>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>S.No</th>
+				<th>Rating</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="temp : ${reviews}">	
+				<td th:text="${temp.id}" />
+				<td th:text="${temp.rating}" />
+				<td th:text="${temp.description}" />
+				<td>
+					<a th:href="@{'/reviews/remove?id='+${temp.id}+'&cid='+${course.id}}">Remove Review</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+	<a th:href="@{'/students'}" 
+			class="btn btn-primary btn-sm mb-3">
+			Back to Student List
+	</a>
+</div>
+	
+</body>
+</html>
+
+
+

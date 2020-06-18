@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Course</title>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Course Form</h3>
+		<hr>
+		
+		<a th:href="@{/courses}" 
+			class="btn btn-primary btn-sm mb-3">
+			Back to Course List
+		</a>
+		
+		<p class="h4 mb-4">Save Course</p>
+		
+		<form 
+			action="#" 
+			th:action="@{/courses/save}" 
+			th:object="${theCourse}" 
+			method="POST">
+			
+			<input 
+				type="text" 
+				th:field="*{name}" 
+				class="form-control mb-4 col-4" 
+				placeholder="Name" />
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+			
+		</form>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course List</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Course List</h3>
+	<hr>
+	
+	<a th:if=${id} th:href="@{'/students/'+${id}+'/addCourses'}" 
+			class="btn btn-primary btn-sm mb-3">
+			Add Courses
+	</a>
+	
+	<a th:href="@{'/courses/add'}" 
+			class="btn btn-primary btn-sm mb-3">
+			Add New Course
+	</a>
+		
+	<h4 class="h4 mb-4">Courses</h4>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>S.No</th>
+				<th>Course Name</th>
+				<th></th>
+				<th th:if="${add_id!=null||remove_id!=null}"></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="temp : ${courses}">	
+				<td th:text="${temp.id}" />
+				<td th:text="${temp.name}" />
+				<td>
+					<a th:href="@{'/courses/'+${temp.id}}">View Course</a>
+				</td>
+				<td th:if="${add_id!=null||remove_id!=null}">
+					<a th:if="${remove_id!=null}" th:href="@{'/students/'+${remove_id}+'/removeCourse?cid='+${temp.id}}">Remove Course</a>
+					<a th:if="${add_id!=null}" th:href="@{'/students/'+${add_id}+'/addCourse?cid='+${temp.id}}">Add Course</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+	<a th:href="@{'/students'}" 
+			class="btn btn-primary btn-sm mb-3">
+			Back to Student List
+	</a>
+</div>
+	
+</body>
+</html>
+
+
+

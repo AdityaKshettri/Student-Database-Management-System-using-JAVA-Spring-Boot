@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Student List</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Student List</h3>
+	<hr>
+	
+	<a th:href="@{/courses}" 
+			class="btn btn-primary btn-sm mb-3">
+			View All Courses
+	</a>
+		
+	<p class="h4 mb-4">Students</p>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Student Name</th>
+				<th>Passport</th>
+				<th>Courses</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="temp : ${students}">	
+				<td th:text="${temp.id}" />
+				<td th:text="${temp.name}" />
+				<td>
+					<p th:if="${temp.passport}" th:text="${temp.passport.number}" />
+					<a th:if="!${temp.passport}" th:href="@{'/passports/add?id='+${temp.id}}">Add Passport</a>
+				<td>
+					<a th:href="@{'/students/'+${temp.id}+'/courses'}">
+						<p th:if="${temp.courses.isEmpty()}">Add Courses</p>
+						<p th:if="!${temp.courses.isEmpty()}">View Courses</p>
+					</a>
+					
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+	<a th:href="@{/students/add}" 
+			class="btn btn-primary btn-sm mb-3">
+			Add new Student
+	</a>
+	
+</div>
+	
+</body>
+</html>
+
+
+
